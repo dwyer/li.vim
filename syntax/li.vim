@@ -1,11 +1,9 @@
 " Vim syntax file
 " Language:	Casey's Lisp
-" Last Change:	2012 Oct 8
+" Last Change:	2014 September 28
 " Maintainer:   Casey Dwyer <caseydwyer@gmail.com>	
 
 " Initializing:
-
-syn case ignore
 
 " Fascist highlighting: everything that doesn't fit the rules is an error...
 
@@ -54,8 +52,10 @@ endif
 syn keyword liSyntax lambda and or if cond case def define let let* letrec
 syn keyword liSyntax begin do delay set! else =>
 syn keyword liSyntax quote quasiquote unquote unquote-splicing
-syn keyword liSyntax assert import named-lambda
+syn keyword liSyntax assert defmacro import named-lambda
+syn keyword liSyntax define-syntax syntax-rules
 
+syn keyword liFunc make-list list-set! string->vector vector->string
 syn keyword liFunc not boolean? eq? eqv? equal? pair? cons car cdr set-car!
 syn keyword liFunc set-cdr! caar cadr cdar cddr caaar caadr cadar caddr
 syn keyword liFunc cdaar cdadr cddar cdddr caaaar caaadr caadar caaddr
@@ -115,21 +115,21 @@ syn match	liDelimiter	!\.$!
 
 " This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
 
-syn match	liOther		,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
-syn match	liError		,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match	liOther		,[A-Za-z!$%&*/:<=>?^_~+@#%-][-A-Za-z!$%&*/:<=>?^_~0-9+.@#%]*,
+syn match	liError		,[A-Za-z!$%&*/:<=>?^_~+@#%-][-A-Za-z!$%&*/:<=>?^_~0-9+.@#%]*[^-A-Za-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
 syn match	liOther		"\.\.\."
 syn match	liError		!\.\.\.[^ \t\[\]()";]\+!
 " ... a special identifier
 
 syn keyword	liConstant	true false null
-syn match	liConstant	,\*[-a-z!$%&*/:<=>?^_~0-9+.@]\+\*[ \t\[\]()";],me=e-1
-syn match	liConstant	,\*[-a-z!$%&*/:<=>?^_~0-9+.@]\+\*$,
-syn match	liError		,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match	liConstant	,\*[-A-Za-z!$%&*/:<=>?^_~0-9+.@]\+\*[ \t\[\]()";],me=e-1
+syn match	liConstant	,\*[-A-Za-z!$%&*/:<=>?^_~0-9+.@]\+\*$,
+syn match	liError		,\*[-A-Za-z!$%&*/:<=>?^_~0-9+.@]*\*[^-A-Za-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
-syn match	liConstant	,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me=e-1
-syn match	liConstant	,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
-syn match	liError		,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match	liConstant	,<[-A-Za-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me=e-1
+syn match	liConstant	,<[-A-Za-z!$%&*/:<=>?^_~0-9+.@]*>$,
+syn match	liError		,<[-A-Za-z!$%&*/:<=>?^_~0-9+.@]*>[^-A-Za-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
 " Non-quoted lists, and strings:
 
