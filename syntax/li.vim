@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language:	Casey's Lisp
-" Last Change:	2014 September 28
+" Last Change:	2014 October 7
 " Maintainer:   Casey Dwyer <caseydwyer@gmail.com>	
 
 " Initializing:
@@ -49,6 +49,7 @@ else
 endif
 
 " scheme stuff
+set lispwords+=syntax-rules
 syn keyword liSyntax lambda and or if cond case def define let let* letrec
 syn keyword liSyntax begin do delay set! else =>
 syn keyword liSyntax quote quasiquote unquote unquote-splicing
